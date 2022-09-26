@@ -6,7 +6,7 @@
 /*   By: hyeonjun <hyeonjun@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 09:13:45 by hyeonjun          #+#    #+#             */
-/*   Updated: 2022/09/25 18:32:34 by hyeonjun         ###   ########.fr       */
+/*   Updated: 2022/09/25 22:02:25 by hyeonjun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,19 @@ void	ft_putchar(char c, int *count)
 
 void	ft_print_str(char *str, int *count)
 {
-	while (*str)
+	int	index;
+
+	index = 0;
+	if (!str)
 	{
-		ft_putchar(*str, count);
-		str++;
+		write(1, "(null)", 6);
+		(*count) += 6;
+		return ;
+	}
+	while (str[index])
+	{
+		ft_putchar(str[index], count);
+		index++;
 	}
 }
 

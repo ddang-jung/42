@@ -6,7 +6,7 @@
 /*   By: hyeonjun <hyeonjun@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 09:15:15 by hyeonjun          #+#    #+#             */
-/*   Updated: 2022/09/25 18:32:54 by hyeonjun         ###   ########.fr       */
+/*   Updated: 2022/09/25 21:52:49 by hyeonjun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,10 @@
 # include <stdarg.h>
 
 void	ft_putchar(char c, int *count);
+void	ft_print_str(char *str, int *count);
 int		ft_printf(const char *format, ...);
-void	ft_putnbr_base(unsigned long l_nbr, char *base, int *count);
+void	ft_putnbr_base(long long l_nbr, char *base, int *count);
+void	ft_putptr_base(unsigned long ul_nbr, char *base, int *count);
 
 void	ft_print_ptr(void *ptr, int *count);
 void	ft_print_int(int nbr, int *count);
