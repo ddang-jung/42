@@ -1,24 +1,6 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: hyeonjun <hyeonjun@student.42seoul.kr>     +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/23 01:10:10 by hyeonjun          #+#    #+#             */
-/*   Updated: 2023/03/29 14:34:35 by hyeonjun         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "main.h"
 
-int	error_handler(char *msg)
-{
-	printf("%s\n", msg);
-	return (1);
-}
-
-static int	ft_isspace(char c)
+int	ft_isspace(char c)
 {
 	if (c == '\t' || c == '\n' || c == '\v' \
 	|| c == '\f' || c == '\r' || c == ' ')
@@ -57,4 +39,13 @@ long long	get_time(void)
 
 	gettimeofday(&tv, NULL);
 	return (tv.tv_sec * 1000 + tv.tv_usec / 1000);
+}
+
+void	my_sleep(int time)
+{
+	long long	target;
+
+	target = get_time() + (long long)time;
+	while (target > get_time())
+		usleep(50);
 }

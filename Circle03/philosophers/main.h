@@ -1,25 +1,15 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   main.h                                             :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: hyeonjun <hyeonjun@student.42seoul.kr>     +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/22 17:27:13 by hyeonjun          #+#    #+#             */
-/*   Updated: 2023/03/29 22:26:22 by hyeonjun         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #ifndef MAIN_H
 # define MAIN_H
 
 # include <stdio.h>
 # include <stdlib.h>
+# include <unistd.h>
+# include <string.h>
 # include <pthread.h>
 # include <sys/time.h>
 
 # define ERROR -1
-# define SUCCESS 0
+# define OK 0
 
 typedef enum e_status
 {
@@ -30,15 +20,15 @@ typedef enum e_status
 
 typedef struct s_philo
 {
-	int				index;
-	int				status;
-	int				count_eat;
-	long long		last_eat;
-	pthread_t		thread;
+	pthread_t		philo_thread;
+	int				philo_i;
+	int				philo_status;
+	int				philo_eat_count;
+	long long		philo_last_eat_time;
 	pthread_mutex_t	*l_fork;
 	pthread_mutex_t	*r_fork;
-	pthread_mutex_t	m_status;
-	pthread_mutex_t	m_last_eat;
+	pthread_mutex_t	m_philo_eat_count;
+	pthread_mutex_t	m_philo_last_eat_time;
 	struct s_info	*info;
 }	t_philo;
 
@@ -51,19 +41,33 @@ typedef struct s_info
 	int				must_eat_times;
 	int				status;
 	long long		start_time;
-	pthread_mutex_t	print;
-	pthread_mutex_t	m_status;
 	pthread_mutex_t	*fork;
+	pthread_mutex_t	m_status;
+	pthread_mutex_t	m_print;
 	t_philo			*philo;
 }	t_info;
 
-// UTILS
-int			error_handler(char *msg);
-static int	ft_isspace(char c);
-int			ft_atoi(const char *str);
-long long	get_time(void);
+// CHECK
+int			check_arg(int ac, char **av);
 
 // INIT
-int			init(t_info *info, int ac, char **av);
+int			init_info(t_info *info, int ac, char **av);
+
+// RUN
+int			run_philo(t_info *info);
+
+// PHILO
+int			create(t_philo *philo);
+void		philo_print(t_philo *philo, char *msg);
+
+
+// CLEAN
+int			clean(t_info *info);
+
+// UTILS
+int			ft_isspace(char c);
+int			ft_atoi(const char *str);
+long long	get_time(void);
+void		my_sleep(int time);
 
 #endif
