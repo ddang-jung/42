@@ -1,6 +1,6 @@
 #include "main.h"
 
-int	check_arg(int ac, char **av)
+int	check(int ac, char **av)
 {
 	int	i;
 

@@ -7,11 +7,11 @@ int	main(int ac, char **av)
 {
 	t_info	info;
 
-	if (check_arg(ac, av) == ERROR)
+	if (check(ac, av) == ERROR)
 		return (1);
-	if (init_info(&info, ac, av) == ERROR)
+	if (init(&info, ac, av) == ERROR)
 		return (1);
-	if (run_philo(&info) == ERROR)
+	if (run(&info) == ERROR)
 		return (1);
 	if (clean(&info) == ERROR)
 		return (1);

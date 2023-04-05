@@ -20,14 +20,13 @@ typedef enum e_status
 
 typedef struct s_philo
 {
-	pthread_t		philo_thread;
+	pthread_t		thread;
 	int				philo_i;
 	int				philo_status;
 	int				philo_eat_count;
 	long long		philo_last_eat_time;
 	pthread_mutex_t	*l_fork;
 	pthread_mutex_t	*r_fork;
-	pthread_mutex_t	m_philo_eat_count;
 	pthread_mutex_t	m_philo_last_eat_time;
 	struct s_info	*info;
 }	t_philo;
@@ -39,25 +38,27 @@ typedef struct s_info
 	int				time_to_eat;
 	int				time_to_sleep;
 	int				must_eat_times;
+	int				full;
 	int				status;
 	long long		start_time;
 	pthread_mutex_t	*fork;
+	pthread_mutex_t	m_full;
 	pthread_mutex_t	m_status;
 	pthread_mutex_t	m_print;
 	t_philo			*philo;
 }	t_info;
 
 // CHECK
-int			check_arg(int ac, char **av);
+int			check(int ac, char **av);
 
 // INIT
-int			init_info(t_info *info, int ac, char **av);
+int			init(t_info *info, int ac, char **av);
 
 // RUN
-int			run_philo(t_info *info);
+int			run(t_info *info);
 
 // PHILO
-int			create(t_philo *philo);
+void		routine(void *philo_void);
 void		philo_print(t_philo *philo, char *msg);
 
 
