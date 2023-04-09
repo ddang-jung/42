@@ -26,23 +26,22 @@ t_philo	*init_philo(t_info *info)
 	i = -1;
 	while (++i < info->num_philo)
 	{
-		init[i].philo_i = i + 1;
-		init[i].philo_status = NORM;
-		init[i].philo_eat_count = 0;
-		init[i].philo_last_eat_time = 0;
+		init[i].index = i + 1;
+		init[i].count = 0;
+		init[i].m_eat = &info->m_eat;
+		init[i].m_full = &info->m_full;
+		init[i].m_print = &info->m_print;
 		init[i].l_fork = &info->fork[i];
 		if (i == 0)
 			init[i].r_fork = &info->fork[info->num_philo - 1];
 		else
 			init[i].r_fork = &info->fork[i - 1];
-		if (pthread_mutex_init(&init[i].m_philo_last_eat_time, NULL))
-			return (NULL);
 		init[i].info = info;
 	}
 	return (init);
 }
 
-int	check_valid(int ac, t_info *info)
+int	check_init(int ac, t_info *info)
 {
 	if (info->num_philo <= 0 || \
 		info->time_to_die <= 0 || \
@@ -69,16 +68,15 @@ int	init(t_info *info, int ac, char **av)
 	info->must_eat_times = -1;
 	if (ac == 6)
 		info->must_eat_times = ft_atoi(av[5]);
-	info->full = 0;
-	info->status = NORM;
+	info->full_philo = 0;
 	info->start_time = 0;
-	info->fork = init_fork(info->num_philo);
-	info->philo = init_philo(info);
-	if (pthread_mutex_init(&info->m_full, NULL))
+	if (pthread_mutex_init(&info->m_eat, NULL))
 		return (ERROR);
-	if (pthread_mutex_init(&info->m_status, NULL))
+	if (pthread_mutex_init(&info->m_full, NULL))
 		return (ERROR);
 	if (pthread_mutex_init(&info->m_print, NULL))
 		return (ERROR);
-	return (check_valid(ac, info));
+	info->fork = init_fork(info->num_philo);
+	info->philo = init_philo(info);
+	return (check_init(ac, info));
 }

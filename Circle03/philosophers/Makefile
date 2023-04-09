@@ -1,8 +1,10 @@
-SRCS = main.c check.c init.c run.c philo.c clean.c utils.c
+SRCS = main.c init.c run.c routine.c utils.c
 
 OBJS = $(SRCS:.c=.o)
 
-CFLAGS = -Wall -Wextra -Werror -g -fsanitize=thread
+CFLAGS = -Wall -Wextra -Werror
+
+DEBUG = -g -fsanitize=thread
 
 RM = rm -f
 

@@ -1,5 +1,11 @@
 #include "main.h"
 
+int	error(char *msg)
+{
+	printf("%s\n", msg);
+	return (ERROR);
+}
+
 int	ft_isspace(char c)
 {
 	if (c == '\t' || c == '\n' || c == '\v' \

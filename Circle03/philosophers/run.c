@@ -1,48 +1,62 @@
 #include "main.h"
 
-int	handler(t_info *info, t_philo *philo, int flag)
-{
-	if (flag == DEAD)
-	{
-		pthread_mutex_unlock(&philo->m_philo_last_eat_time);
-		philo_print(philo, "died");
-		pthread_mutex_lock(&info->m_status);
-		info->status = DEAD;
-		pthread_mutex_unlock(&info->m_status);
-		return (1);
-	}
-	if (flag == FULL)
-	{
-		pthread_mutex_lock(&info->m_status);
-		info->status = FULL;
-		pthread_mutex_unlock(&info->m_status);
-		return (1);
-	}
-	return (OK);
-}
-
-int	monitor(t_info *info)
+void	*routine(void *philo_void)
 {
 	t_philo	*philo;
-	int		i;
 
-	i = -1;
-	while (++i < info->num_philo)
+	philo = (t_philo *)philo_void;
+	if (philo->index & 1)
+		usleep(5000);
+	while (1)
 	{
-		philo = &info->philo[i];
-		pthread_mutex_lock(&philo->m_philo_last_eat_time);
-		if (get_time() - philo->philo_last_eat_time >= info->time_to_die)
-			return (handler(info, philo, DEAD));
-		pthread_mutex_unlock(&philo->m_philo_last_eat_time);
-		if (info->must_eat_times != -1)
-		{
-			pthread_mutex_lock(&info->m_full);
-			if (info->full == info->num_philo)
-				return (handler(info, philo, FULL));
-			pthread_mutex_lock(&info->m_full);
-		}
+		pickup(philo);
+		eat(philo);
+		sleep_and_think(philo);
 	}
-	return (OK);
+	return (NULL);
+}
+
+int	check_dead(t_philo *philo, long long now)
+{	
+	pthread_mutex_lock(philo->m_eat);
+	if (now - philo->last_eat >= philo->info->time_to_die)
+	{
+		pthread_mutex_lock(philo->m_print);
+		printf("%lld\t %d died\n", now - philo->info->start_time, philo->index);
+		return (TRUE);
+	}
+	pthread_mutex_unlock(philo->m_eat);
+	return (FALSE);
+}
+
+int	check_full(t_info *info)
+{
+	pthread_mutex_lock(&info->m_full);
+	if (info->full_philo == info->num_philo)
+	{
+		pthread_mutex_lock(&info->m_print);
+		return (TRUE);
+	}
+	pthread_mutex_unlock(&info->m_full);
+	return (FALSE);
+}
+
+void	monitor(t_info *info)
+{
+	int			i;
+	long long	now;
+
+	while (1)
+	{
+		i = -1;
+		now = get_time();
+		while (++i < info->num_philo)
+			if (check_dead(&info->philo[i], now) == TRUE)
+				return ;
+		if (info->must_eat_times != -1)
+			if (check_full(info) == TRUE)
+				return ;
+	}
 }
 
 int	run(t_info *info)
@@ -50,16 +64,15 @@ int	run(t_info *info)
 	t_philo	*philo;
 	int		i;
 
-	i = -1;
 	info->start_time = get_time();
+	i = -1;
 	while (++i < info->num_philo)
 	{
 		philo = &info->philo[i];
-		philo->philo_last_eat_time = get_time(); // 이거 routine 안에서 한 번 더 하는데 왜 하는지 모르겠음
-		if (pthread_create(&philo->thread, NULL, (void *)routine, philo))
+		philo->last_eat = get_time();
+		if (pthread_create(&philo->thread, 0, routine, philo))
 			return (ERROR);
 	}
-	while (1)
-		if (monitor(info))
-			return (OK);
+	monitor(info);
+	return (OK);
 }
