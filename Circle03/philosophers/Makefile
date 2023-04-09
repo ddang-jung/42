@@ -4,8 +4,6 @@ OBJS = $(SRCS:.c=.o)
 
 CFLAGS = -Wall -Wextra -Werror
 
-DEBUG = -g -fsanitize=thread
-
 RM = rm -f
 
 NAME = philo

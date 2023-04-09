@@ -48,6 +48,5 @@ int	main(int ac, char **av)
 		return (error("run() Error."));
 	if (clean(&info) == ERROR)
 		return (error("clean() Error."));
-	system("leaks philo");
 	return (OK);
 }
