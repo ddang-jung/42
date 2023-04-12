@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.h                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hyeonjun <hyeonjun@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/04/10 16:36:33 by hyeonjun          #+#    #+#             */
+/*   Updated: 2023/04/11 20:22:52 by hyeonjun         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef MAIN_H
 # define MAIN_H
 
@@ -12,13 +24,6 @@
 # define ERROR -1
 
 # define OK 0
-
-typedef enum e_status
-{
-	NORM,
-	FULL,
-	DEAD,
-}	t_status;
 
 typedef struct s_philo
 {
@@ -41,6 +46,7 @@ typedef struct s_info
 	int				time_to_eat;
 	int				time_to_sleep;
 	int				must_eat_times;
+	int				is_end;
 	int				full_philo;
 	long long		start_time;
 	pthread_mutex_t	m_eat;
@@ -55,11 +61,10 @@ int			init(t_info *info, int ac, char **av);
 
 // RUN
 int			run(t_info *info);
+int			philo_print(t_philo *philo, char *msg);
 
-// PHILO
-void		pickup(t_philo *philo);
-void		eat(t_philo *philo);
-void		sleep_and_think(t_philo *philo);
+// ROUTINE
+void		*routine(void *philo_void);
 
 // UTILS
 int			error(char *msg);

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   init.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hyeonjun <hyeonjun@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/04/11 20:17:28 by hyeonjun          #+#    #+#             */
+/*   Updated: 2023/04/11 20:18:02 by hyeonjun         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "main.h"
 
 pthread_mutex_t	*init_fork(int num)
@@ -68,6 +80,7 @@ int	init(t_info *info, int ac, char **av)
 	info->must_eat_times = -1;
 	if (ac == 6)
 		info->must_eat_times = ft_atoi(av[5]);
+	info->is_end = 0;
 	info->full_philo = 0;
 	info->start_time = 0;
 	if (pthread_mutex_init(&info->m_eat, NULL))
