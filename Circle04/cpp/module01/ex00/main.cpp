@@ -1,20 +1,20 @@
 #include "Zombie.hpp"
 
 int	main(void) {
-	Zombie	a;
+	Zombie	zombie;
 	Zombie	*ptr;
 
 	// STACK in main
-	a.setZombieName("A");
-	a.announce();
+	zombie.setZombieName("A");
+	zombie.announce();
 
 	// HEAP
-	ptr = a.newZombie("B");
+	ptr = zombie.newZombie("B");
 	ptr->announce();
 	delete(ptr);
 
 	// STACK in randomChump
-	a.randomChump("C");
+	zombie.randomChump("C");
 
 	return (0);
 }
