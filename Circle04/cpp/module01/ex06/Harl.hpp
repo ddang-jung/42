@@ -16,6 +16,7 @@ class Harl
 
 	public:
 		void	complain( std::string level );
+		int		checkLevel( std::string input );
 
 		Harl();
 		~Harl();
