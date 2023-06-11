@@ -49,35 +49,35 @@ std::ostream	&operator<<(std::ostream &os, const Fixed &ref) {
 }
 
 // ex02
-bool	Fixed::operator>(const Fixed &ref) {
+bool	Fixed::operator>(const Fixed &ref) const {
 	return (getRawBits() > ref.getRawBits());
 }
-bool	Fixed::operator<(const Fixed &ref) {
+bool	Fixed::operator<(const Fixed &ref) const {
 	return (getRawBits() < ref.getRawBits());
 }
-bool	Fixed::operator>=(const Fixed &ref) {
+bool	Fixed::operator>=(const Fixed &ref) const {
 	return (getRawBits() >= ref.getRawBits());
 }
-bool	Fixed::operator<=(const Fixed &ref) {
+bool	Fixed::operator<=(const Fixed &ref) const {
 	return (getRawBits() <= ref.getRawBits());
 }
-bool	Fixed::operator==(const Fixed &ref) {
+bool	Fixed::operator==(const Fixed &ref) const {
 	return (getRawBits() == ref.getRawBits());
 }
-bool	Fixed::operator!=(const Fixed &ref) {
+bool	Fixed::operator!=(const Fixed &ref) const {
 	return (getRawBits() != ref.getRawBits());
 }
 
-Fixed	Fixed::operator+(const Fixed &ref) {
+Fixed	Fixed::operator+(const Fixed &ref) const {
 	return (Fixed(toFloat() + ref.toFloat()));
 }
-Fixed	Fixed::operator-(const Fixed &ref) {
+Fixed	Fixed::operator-(const Fixed &ref) const {
 	return (Fixed(toFloat() - ref.toFloat()));
 }
-Fixed	Fixed::operator*(const Fixed &ref) {
+Fixed	Fixed::operator*(const Fixed &ref) const {
 	return (Fixed(toFloat() * ref.toFloat()));
 }
-Fixed	Fixed::operator/(const Fixed &ref) {
+Fixed	Fixed::operator/(const Fixed &ref) const {
 	return (Fixed(toFloat() / ref.toFloat()));
 }
 
