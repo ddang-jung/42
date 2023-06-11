@@ -12,8 +12,10 @@ Fixed::Fixed(const Fixed &ref) {
 }
 
 Fixed	&Fixed::operator=(const Fixed &ref) {
-	std::cout << COPY_ASN << std::endl;
-	this->_rawBit = ref.getRawBits();
+	if (this != &ref) {
+		std::cout << COPY_ASN << std::endl;
+		this->_rawBit = ref.getRawBits();
+	}
 	return (*this);
 }
 

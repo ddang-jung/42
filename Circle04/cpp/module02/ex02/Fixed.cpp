@@ -10,7 +10,8 @@ Fixed::Fixed(const Fixed &ref) {
 }
 
 Fixed	&Fixed::operator=(const Fixed &ref) {
-	this->_rawBit = ref.getRawBits();
+	if (this != &ref)
+		this->_rawBit = ref.getRawBits();
 	return (*this);
 }
 

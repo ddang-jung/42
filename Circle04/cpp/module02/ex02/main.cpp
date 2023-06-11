@@ -15,6 +15,21 @@ int main( void ) {
 
 	std::cout << Fixed::max( a, b ) << std::endl;
 
+	// TEST
+	// Fixed	x(0);
+	// Fixed	y(1);
+
+	// std::cout << (x > y) << std::endl;
+	// std::cout << (x < y) << std::endl;
+	// std::cout << (x >= y) << std::endl;
+	// std::cout << (x <= y) << std::endl;
+	// std::cout << (x == y) << std::endl;
+	// std::cout << (x != y) << std::endl;
+	// std::cout << (x + y) << std::endl;
+	// std::cout << (x - y) << std::endl;
+	// std::cout << (x * y) << std::endl;
+	// std::cout << (x / y) << std::endl;
+	// std::cout << Fixed::min( x,y ) << std::endl;
 	return 0;
 }
 
