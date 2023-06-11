@@ -1,18 +1,18 @@
 #ifndef FIXED_HPP
 # define FIXED_HPP
 
-# include <iostream>
+# include "Fixed.h"
 
 class Fixed {
 	private:
-		int					_value;
-		static const int	_bit = 8;
+		int					_rawBit;
+		static const int	_fracBit = 8;
 
 	public:
 		// OCF
 		Fixed();
-		Fixed(const Fixed &other);
-		Fixed& operator=(const Fixed &other);
+		Fixed(const Fixed &ref);
+		Fixed	&operator=(const Fixed &ref);
 		~Fixed();
 		// ex00
 		int		getRawBits( void ) const;
