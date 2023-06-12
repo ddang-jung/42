@@ -1,50 +1,30 @@
-#include "Fixed.hpp"
+#include "Point.hpp"
 #include <iostream>
 
-int main( void ) {
-	Fixed		a;
-	Fixed const	b( Fixed( 5.05f ) * Fixed( 2 ) );
+void	doBspAndPrint(const Point &a, const Point &b, const Point &c, const Point &p) {
+	bool	ret;
 
-	std::cout << a << std::endl;
-	std::cout << ++a << std::endl;
-	std::cout << a << std::endl;
-	std::cout << a++ << std::endl;
-	std::cout << a << std::endl;
-
-	std::cout << b << std::endl;
-
-	std::cout << Fixed::max( a, b ) << std::endl;
-
-	// TEST
-	// Fixed	x(0);
-	// Fixed	y(1);
-
-	// std::cout << (x > y) << std::endl;
-	// std::cout << (x < y) << std::endl;
-	// std::cout << (x >= y) << std::endl;
-	// std::cout << (x <= y) << std::endl;
-	// std::cout << (x == y) << std::endl;
-	// std::cout << (x != y) << std::endl;
-	// std::cout << (x + y) << std::endl;
-	// std::cout << (x - y) << std::endl;
-	// std::cout << (x * y) << std::endl;
-	// std::cout << (x / y) << std::endl;
-	// std::cout << Fixed::min( x,y ) << std::endl;
-	return 0;
+	ret = bsp(a, b, c, p);
+	if (ret)
+		std::cout << "The point is **inside** the triangle" << std::endl;
+	else
+		std::cout << "The point is **outside** the triangle" << std::endl;
 }
 
-/*
-	Should output something like
-	(for greater readability, the constructor/destructor
-	messages are removed in the example below):
+int main( void ) {
+	Point	a(0, 0);
+	Point	b(10.0, 0.0);
+	Point	c(0.0, 10.0);
+
+	// inside
+	Point	p1(0.1, 0.1);
+	doBspAndPrint(a, b, c, p1);
+	// edge
+	Point	p2(0.0, 0.0);
+	doBspAndPrint(a, b, c, p2);
+	// outside
+	Point	p3(10.0, 10.0);
+	doBspAndPrint(a, b, c, p3);
 	
-	$> ./a.out
-	0
-	0.00390625
-	0.00390625
-	0.00390625
-	0.0078125
-	10.1016
-	10.1016
-	$>
-*/
+	return (0);
+}

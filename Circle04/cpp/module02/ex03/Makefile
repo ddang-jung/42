@@ -1,4 +1,4 @@
-NAME = a.out
+NAME = bsp
 
 CXX = c++
 
@@ -6,7 +6,7 @@ CXXFLAGS = -std=c++98 -Wall -Wextra -Werror
 
 RM = rm -f
 
-SRCS = main.cpp Fixed.cpp
+SRCS = main.cpp Fixed.cpp Point.cpp bsp.cpp
 
 OBJS = ${SRCS:.cpp=.o}
 

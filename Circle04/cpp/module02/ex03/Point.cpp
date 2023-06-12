@@ -9,8 +9,8 @@ Point::Point(const Point &ref) {
 
 Point	&Point::operator=(const Point &ref) {
 	if (this != &ref) {
-		this->_x = ref.getX();
-		this->_y = ref.getY();
+		const_cast<Fixed&>(this->_x) = ref.getX();
+		const_cast<Fixed&>(this->_y) = ref.getY();
 	}
 	return (*this);
 }
@@ -18,5 +18,12 @@ Point	&Point::operator=(const Point &ref) {
 Point::~Point() {
 }
 
-Point::Point(const float x, const float y) {
+Point::Point(const float x, const float y) : _x(x), _y(y) {
+}
+
+const Fixed Point::getX() const {
+	return (_x);
+}
+const Fixed Point::getY() const {
+	return (_y);
 }

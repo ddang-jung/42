@@ -16,8 +16,10 @@ class Point
 
 		Point(const float x, const float y);
 
-		const Fixed getX();
-		const Fixed getY();
+		const Fixed getX() const;
+		const Fixed getY() const;
 };
+
+bool	bsp(Point const a, Point const b, Point const c, Point const point);
 
 #endif
