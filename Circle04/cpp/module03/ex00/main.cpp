@@ -1,41 +1,45 @@
 #include "ClapTrap.hpp"
 #include <iostream>
 
-void	printStatus(const ClapTrap &a) {
-	std::cout << "**Status " << a.getName() << " hp:" << a.getHitPoint() << " ep:" << a.getEnergyPoint() << " ad:" << a.getAttackDamage() << std::endl;
-}
-
 int	main(void) {
 	ClapTrap	john("John");
-	ClapTrap	nomad;
+	ClapTrap	foo;
 
 	std::cout << std::endl;
 
-	printStatus(john);
-	printStatus(nomad);
+	john.printStatus();
+	foo.printStatus();
 	std::cout << std::endl;
 
-	john.attack("nomad");
-	nomad.takeDamage(john.getAttackDamage());
-	printStatus(john);
-	printStatus(nomad);
+	john.attack("Foo");
+	foo.takeDamage(john.getAttackDamage());
+	std::cout << std::endl;
+
+	john.printStatus();
+	foo.printStatus();
 	std::cout << std::endl;
 
 	john.setAttackDamage(2);
-	john.attack("nomad");
-	nomad.takeDamage(john.getAttackDamage());
-	printStatus(john);
-	printStatus(nomad);
+	john.attack("Foo");
+	foo.takeDamage(john.getAttackDamage());
 	std::cout << std::endl;
 
-	nomad.beRepaired(1);
-	printStatus(nomad);
+	john.printStatus();
+	foo.printStatus();
 	std::cout << std::endl;
 
-	for (int i = 0; i < 10; i++)
-		john.attack("nomad");
-	for (int i = 0; i < 10; i++)
-		nomad.takeDamage(john.getAttackDamage());
+	foo.beRepaired(1);
+	foo.printStatus();
+	std::cout << std::endl;
+
+	for (int i = 0; i < 10; i++) {
+		john.attack("Foo");
+		foo.takeDamage(john.getAttackDamage());
+		std::cout << std::endl;
+	}
+	foo.beRepaired(100);
+	foo.printStatus();
+	std::cout << std::endl;
 
 	return (0);
 }
