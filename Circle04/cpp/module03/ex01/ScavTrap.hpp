@@ -2,22 +2,28 @@
 # define SCAVTRAP_HPP
 
 # include "ScavTrap.h"
-# include "ClapTrap.hpp"
 
 class ScavTrap : public ClapTrap
 {
-	private:
-
-
 	public:
+		// OCF
 		ScavTrap();
+		ScavTrap(const std::string &name); // STR_CON
 		ScavTrap(const ScavTrap &ref);
 		ScavTrap	&operator=(const ScavTrap &ref);
 		~ScavTrap();
 
-		ScavTrap(const std::string &name);
+		// INIT
+		void	initHitPoint(void);
+		void	initEnergyPoint(void);
+		void	initAttackDamage(void);
 
+		// ACT
+		void	attack(const std::string& target);
+		void	takeDamage(unsigned int amount);
+		void	beRepaired(unsigned int amount);
 		void	guardGate();
+		void	printStatus();
 };
 
 #endif
