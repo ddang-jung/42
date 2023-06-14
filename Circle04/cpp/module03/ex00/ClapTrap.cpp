@@ -5,16 +5,16 @@ ClapTrap::ClapTrap() : _name("nomad"), _hp(10), _ep(10), _ad(0) {
 	std::cout << CON << std::endl;
 }
 ClapTrap::ClapTrap(const ClapTrap &ref) {
-	std::cout << COPY_CON << std::endl;
 	*this = ref;
+	std::cout << COPY_CON << std::endl;
 }
 ClapTrap	&ClapTrap::operator=(const ClapTrap &ref) {
-	std::cout << COPY_ASN << std::endl;
 	if (this != &ref) {
 		_name = ref.getName();
 		setHitPoint(ref.getHitPoint());
 		setEnergyPoint(ref.getEnergyPoint());
 		setAttackDamage(ref.getAttackDamage());
+		std::cout << COPY_ASN << std::endl;
 	}
 	return (*this);
 }
