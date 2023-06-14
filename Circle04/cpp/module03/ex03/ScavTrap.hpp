@@ -23,7 +23,6 @@ class ScavTrap : virtual public ClapTrap
 		void	takeDamage(unsigned int amount);
 		void	beRepaired(unsigned int amount);
 		void	guardGate();
-		void	printStatus();
 };
 
 #endif

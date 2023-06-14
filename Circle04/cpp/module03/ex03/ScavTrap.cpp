@@ -93,6 +93,3 @@ void	ScavTrap::beRepaired(unsigned int amount) {
 void	ScavTrap::guardGate() {
 	std::cout << "ScavTrap " << getName() << " is now in Gatekeeper mode." << std::endl;
 }
-void	ScavTrap::printStatus() {
-	std::cout << "**Status " << getName() << " hp:" << getHitPoint() << " ep:" << getEnergyPoint() << " ad:" << getAttackDamage() << std::endl;
-}

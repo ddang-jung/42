@@ -93,6 +93,3 @@ void	FragTrap::beRepaired(unsigned int amount) {
 void	FragTrap::highFivesGuys(void) {
 	std::cout << "FragTrap " << getName() << " high fives!" << std::endl;
 }
-void	FragTrap::printStatus() {
-	std::cout << "**Status " << getName() << " hp:" << getHitPoint() << " ep:" << getEnergyPoint() << " ad:" << getAttackDamage() << std::endl;
-}

@@ -11,7 +11,7 @@ DiamondTrap::DiamondTrap()
 	std::cout << DIA_CON << std::endl;
 }
 DiamondTrap::DiamondTrap(const std::string &name)
-		: ClapTrap(name + "_clap_name"), FragTrap(name + "_clap_name"), ScavTrap(name + "_clap_name") {
+		: ClapTrap(name + "_clap_name"), FragTrap(name + "_frag_name"), ScavTrap(name + "_scav_name") {
 	_name = name;
 	initHitPoint();
 	initEnergyPoint();

@@ -3,7 +3,7 @@
 
 # include "FragTrap.h"
 
-class FragTrap : virtual public ClapTrap
+class FragTrap : public ClapTrap
 {
 	public:
 		// OCF
