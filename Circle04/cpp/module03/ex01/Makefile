@@ -1,4 +1,4 @@
-NAME = claptrap
+NAME = scavtrap
 
 CXX = c++
 
@@ -19,7 +19,7 @@ BOLD = \033[1m
 
 $(NAME) : $(OBJS)
 	@$(CXX) $(CXXFLAGS) $(OBJS) -o $(NAME)
-	@echo "$(GREEN)$(BOLD) $(NAME) is ready 💫"
+	@echo "$(GREEN)$(BOLD)$(NAME) is ready 💫"
 
 all : $(NAME)
 
