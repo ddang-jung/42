@@ -1,39 +1,46 @@
 #include "FragTrap.hpp"
+#include "ScavTrap.hpp"
 #include <iostream>
 
-void	printStatus(const FragTrap &a) {
-	std::cout << "**Status " << a.getName() << " hp:" << a.getHitPoint() << " ep:" << a.getEnergyPoint() << " ad:" << a.getAttackDamage() << std::endl;
-}
-
 int	main(void) {
-	FragTrap	john("John");
-	FragTrap	frag;
+	FragTrap	tom("Tom");
+	ScavTrap	john("John");
+	ClapTrap	foo;
 
 	std::cout << std::endl;
 
-	printStatus(john);
-	printStatus(frag);
+	tom.printStatus();
+	john.printStatus();
+	foo.printStatus();
 	std::cout << std::endl;
 
-	john.attack("Frag");
-	frag.takeDamage(john.getAttackDamage());
+	tom.attack("john");
+	john.takeDamage(tom.getAttackDamage());
+	john.attack("Foo");
+	foo.takeDamage(john.getAttackDamage());
 	std::cout << std::endl;
 
-	printStatus(john);
-	printStatus(frag);
+	tom.printStatus();
+	john.printStatus();
+	foo.printStatus();
 	std::cout << std::endl;
 
-	john.highFivesGuys();
-	frag.highFivesGuys();
+	tom.beRepaired(1);
+	john.beRepaired(1);
+	foo.beRepaired(1);
 	std::cout << std::endl;
 
-	frag = john;
+	tom.printStatus();
+	john.printStatus();
+	foo.printStatus();
 	std::cout << std::endl;
 
-	printStatus(john);
-	printStatus(frag);
+	tom.highFivesGuys();
+	john.guardGate();
 	std::cout << std::endl;
-	// TEST
+	// UNAVILABLE
+	// tom.guardGate();
+	// john.highFivesGuys();
 	// ClapTrap	clap;
 
 	// clap.guardGate();

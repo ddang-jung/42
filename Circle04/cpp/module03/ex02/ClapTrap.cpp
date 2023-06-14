@@ -1,8 +1,20 @@
 #include "ClapTrap.hpp"
 #include <iostream>
 
-ClapTrap::ClapTrap() : _hp(10), _ep(10), _ad(0), _name("Clap") {
+// OCF
+ClapTrap::ClapTrap() {
+	setName("Foo");
+	initHitPoint();
+	initEnergyPoint();
+	initAttackDamage();
 	std::cout << CLAP_CON << std::endl;
+}
+ClapTrap::ClapTrap(const std::string &name) {
+	setName(name);
+	initHitPoint();
+	initEnergyPoint();
+	initAttackDamage();
+	std::cout << CLAP_STR_CON << std::endl;
 }
 ClapTrap::ClapTrap(const ClapTrap &ref) {
 	*this = ref;
@@ -10,7 +22,7 @@ ClapTrap::ClapTrap(const ClapTrap &ref) {
 }
 ClapTrap	&ClapTrap::operator=(const ClapTrap &ref) {
 	if (this != &ref) {
-		_name = ref.getName();
+		setName(ref.getName());
 		setHitPoint(ref.getHitPoint());
 		setEnergyPoint(ref.getEnergyPoint());
 		setAttackDamage(ref.getAttackDamage());
@@ -22,21 +34,21 @@ ClapTrap::~ClapTrap() {
 	std::cout << CLAP_DES << std::endl;
 }
 
-ClapTrap::ClapTrap(const std::string &name) : _hp(10), _ep(10), _ad(0), _name(name) {
-	std::cout << CLAP_STR_CON << std::endl;
-}
-
+// GET / SET
 const std::string	&ClapTrap::getName() const {
 	return (_name);
 }
-unsigned int		ClapTrap::getHitPoint() const {
+const unsigned int	&ClapTrap::getHitPoint() const {
 	return (_hp);
 }
-unsigned int		ClapTrap::getEnergyPoint() const {
+const unsigned int	&ClapTrap::getEnergyPoint() const {
 	return (_ep);
 }
-unsigned int		ClapTrap::getAttackDamage() const {
+const unsigned int	&ClapTrap::getAttackDamage() const {
 	return (_ad);
+}
+void				ClapTrap::setName(const std::string &name) {
+	_name = name;
 }
 void				ClapTrap::setHitPoint(unsigned int hp) {
 	_hp = hp;
@@ -48,7 +60,19 @@ void				ClapTrap::setAttackDamage(unsigned int ad) {
 	_ad = ad;
 }
 
-void				ClapTrap::attack(const std::string &target) {
+// INIT
+void	ClapTrap::initHitPoint() {
+	setHitPoint(CLAP_HP);
+}
+void	ClapTrap::initEnergyPoint() {
+	setEnergyPoint(CLAP_EP);
+}
+void	ClapTrap::initAttackDamage() {
+	setAttackDamage(CLAP_AD);
+}
+
+// ACT
+void	ClapTrap::attack(const std::string &target) {
 	if (getEnergyPoint() == 0 || getHitPoint() == 0) {
 		if (getEnergyPoint() == 0)
 			std::cout << "ClapTrap " << getName() << " failed to attack (has no energy..)" << std::endl;
@@ -63,7 +87,7 @@ void				ClapTrap::attack(const std::string &target) {
 		setEnergyPoint(getEnergyPoint() - 1);
 	}
 }
-void				ClapTrap::takeDamage(unsigned int amount) {
+void	ClapTrap::takeDamage(unsigned int amount) {
 	if (getHitPoint() > 0) {
 		std::cout << "ClapTrap " << getName() << " took " << amount << " points of damage! now hit point is ";
 		if (getHitPoint() > amount) {
@@ -78,15 +102,18 @@ void				ClapTrap::takeDamage(unsigned int amount) {
 		std::cout << "ClapTrap " << getName() << " is already dead.. please stop.." << std::endl;
 	}
 }
-void				ClapTrap::beRepaired(unsigned int amount) {
+void	ClapTrap::beRepaired(unsigned int amount) {
 	if (getEnergyPoint() == 0 || getHitPoint() == 0) {
 		if (getEnergyPoint() == 0)
-			std::cout << "ClapTrap " << getName() << "failed to repair (has no energy..)" << std::endl;
+			std::cout << "ClapTrap " << getName() << " failed to repair (has no energy..)" << std::endl;
 		if (getHitPoint() == 0)
-			std::cout << "ClapTrap " << getName() << "failed to repair (has no hit point..)" << std::endl;
+			std::cout << "ClapTrap " << getName() << " failed to repair (has no hit point..)" << std::endl;
 	} else {
 		std::cout << "ClapTrap " << getName() << " repaired " << amount << std::endl;
 		setHitPoint(getHitPoint() + amount);
 		setEnergyPoint(getEnergyPoint() - 1);
 	}
+}
+void	ClapTrap::printStatus() {
+	std::cout << "**Status " << getName() << " hp:" << getHitPoint() << " ep:" << getEnergyPoint() << " ad:" << getAttackDamage() << std::endl;
 }

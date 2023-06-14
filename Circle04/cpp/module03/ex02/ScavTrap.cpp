@@ -1,21 +1,30 @@
 #include "ScavTrap.hpp"
 #include <iostream>
 
+// OCF
 ScavTrap::ScavTrap()
 		: ClapTrap() {
-	_name = "Scav";
-	setHitPoint(100);
-	setEnergyPoint(50);
-	setAttackDamage(20);
+	initHitPoint();
+	initEnergyPoint();
+	initAttackDamage();
 	std::cout << SCAV_CON << std::endl;
+}
+ScavTrap::ScavTrap(const std::string &name)
+		: ClapTrap(name) {
+	initHitPoint();
+	initEnergyPoint();
+	initAttackDamage();
+	std::cout << SCAV_STR_CON << std::endl;
 }
 ScavTrap::ScavTrap(const ScavTrap &ref)
 		: ClapTrap(ref) {
+	if (this != &ref)
+		*this = ref;
 	std::cout << SCAV_COPY_CON << std::endl;
 }
 ScavTrap	&ScavTrap::operator=(const ScavTrap &ref) {
 	if (this != &ref) {
-		_name = ref.getName();
+		setName(ref.getName());
 		setHitPoint(ref.getHitPoint());
 		setEnergyPoint(ref.getEnergyPoint());
 		setAttackDamage(ref.getAttackDamage());
@@ -27,14 +36,18 @@ ScavTrap::~ScavTrap() {
 	std::cout << SCAV_DES << std::endl;
 }
 
-ScavTrap::ScavTrap(const std::string &name)
-		: ClapTrap(name) {
-	setHitPoint(100);
-	setEnergyPoint(50);
-	setAttackDamage(20);
-	std::cout << SCAV_STR_CON << std::endl;
+// INIT
+void	ScavTrap::initHitPoint(void) {
+	setHitPoint(SCAV_HP);
+}
+void	ScavTrap::initEnergyPoint(void) {
+	setEnergyPoint(SCAV_EP);
+}
+void	ScavTrap::initAttackDamage(void) {
+	setAttackDamage(SCAV_AD);
 }
 
+// ACT
 void	ScavTrap::attack(const std::string &target) {
 	if (getEnergyPoint() == 0 || getHitPoint() == 0) {
 		if (getEnergyPoint() == 0)
@@ -78,5 +91,8 @@ void	ScavTrap::beRepaired(unsigned int amount) {
 	}
 }
 void	ScavTrap::guardGate() {
-	std::cout << "ScavTrap " << _name << " is now in Gatekeeper mode." << std::endl;
+	std::cout << "ScavTrap " << getName() << " is now in Gatekeeper mode." << std::endl;
+}
+void	ScavTrap::printStatus() {
+	std::cout << "**Status " << getName() << " hp:" << getHitPoint() << " ep:" << getEnergyPoint() << " ad:" << getAttackDamage() << std::endl;
 }

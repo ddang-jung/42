@@ -1,21 +1,30 @@
 #include "FragTrap.hpp"
 #include <iostream>
 
+// OCF
 FragTrap::FragTrap()
 		: ClapTrap() {
-	_name = "Frag";
-	setHitPoint(100);
-	setEnergyPoint(100);
-	setAttackDamage(30);
+	initHitPoint();
+	initEnergyPoint();
+	initAttackDamage();
 	std::cout << FRAG_CON << std::endl;
+}
+FragTrap::FragTrap(const std::string &name)
+		: ClapTrap(name) {
+	initHitPoint();
+	initEnergyPoint();
+	initAttackDamage();
+	std::cout << FRAG_STR_CON << std::endl;
 }
 FragTrap::FragTrap(const FragTrap &ref)
 		: ClapTrap(ref) {
+	if (this != &ref)
+		*this = ref;
 	std::cout << FRAG_COPY_CON << std::endl;
 }
 FragTrap	&FragTrap::operator=(const FragTrap &ref) {
 	if (this != &ref) {
-		_name = ref.getName();
+		setName(ref.getName());
 		setHitPoint(ref.getHitPoint());
 		setEnergyPoint(ref.getEnergyPoint());
 		setAttackDamage(ref.getAttackDamage());
@@ -27,14 +36,18 @@ FragTrap::~FragTrap() {
 	std::cout << FRAG_DES << std::endl;
 }
 
-FragTrap::FragTrap(const std::string &name)
-		: ClapTrap(name) {
-	setHitPoint(100);
-	setEnergyPoint(100);
-	setAttackDamage(30);
-	std::cout << FRAG_STR_CON << std::endl;
+// INIT
+void	FragTrap::initHitPoint(void) {
+	setHitPoint(FRAG_HP);
+}
+void	FragTrap::initEnergyPoint(void) {
+	setEnergyPoint(FRAG_EP);
+}
+void	FragTrap::initAttackDamage(void) {
+	setAttackDamage(FRAG_AD);
 }
 
+// ACT
 void	FragTrap::attack(const std::string &target) {
 	if (getEnergyPoint() == 0 || getHitPoint() == 0) {
 		if (getEnergyPoint() == 0)
@@ -78,5 +91,8 @@ void	FragTrap::beRepaired(unsigned int amount) {
 	}
 }
 void	FragTrap::highFivesGuys(void) {
-	std::cout << "FragTrap " << _name << " high fives!" << std::endl;
+	std::cout << "FragTrap " << getName() << " high fives!" << std::endl;
+}
+void	FragTrap::printStatus() {
+	std::cout << "**Status " << getName() << " hp:" << getHitPoint() << " ep:" << getEnergyPoint() << " ad:" << getAttackDamage() << std::endl;
 }

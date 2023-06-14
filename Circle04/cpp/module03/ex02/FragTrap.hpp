@@ -2,22 +2,28 @@
 # define FRAGTRAP_HPP
 
 # include "FragTrap.h"
-# include "ClapTrap.hpp"
 
-class FragTrap : public ClapTrap
+class FragTrap : virtual public ClapTrap
 {
 	public:
+		// OCF
 		FragTrap();
+		FragTrap(const std::string &name); // STR_CON
 		FragTrap(const FragTrap &ref);
 		FragTrap	&operator=(const FragTrap &ref);
 		~FragTrap();
 
-		FragTrap(const std::string &name);
+		// INIT
+		void	initHitPoint(void);
+		void	initEnergyPoint(void);
+		void	initAttackDamage(void);
 
+		// ACT
 		void	attack(const std::string& target);
 		void	takeDamage(unsigned int amount);
 		void	beRepaired(unsigned int amount);
 		void	highFivesGuys(void);
+		void	printStatus();
 };
 
 #endif
