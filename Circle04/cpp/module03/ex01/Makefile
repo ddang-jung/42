@@ -25,12 +25,12 @@ all : $(NAME)
 
 clean :
 	@$(RM) $(OBJS)
-	@echo "$(RED) deleted object files"
+	@echo "$(RED)deleted object files"
 
 fclean :
 	@$(MAKE) clean
 	@$(RM) $(NAME)
-	@echo "$(RED) deleted $(NAME)"
+	@echo "$(RED)deleted $(NAME)"
 
 re :
 	@$(MAKE) fclean
