@@ -71,7 +71,7 @@ void	ScavTrap::takeDamage(unsigned int amount) {
 			setHitPoint(getHitPoint() - amount);
 		}
 		else {
-			std::cout << "0.. his dead.." << std::endl;
+			std::cout << "0.. he's dead.." << std::endl;
 			setHitPoint(0);
 		}
 	} else {

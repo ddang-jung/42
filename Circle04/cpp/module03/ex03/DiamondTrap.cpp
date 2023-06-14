@@ -60,7 +60,7 @@ void	DiamondTrap::takeDamage(unsigned int amount) {
 			setHitPoint(getHitPoint() - amount);
 		}
 		else {
-			std::cout << "0.. his dead.." << std::endl;
+			std::cout << "0.. he's dead.." << std::endl;
 			setHitPoint(0);
 		}
 	} else {
@@ -80,7 +80,7 @@ void	DiamondTrap::beRepaired(unsigned int amount) {
 	}
 }
 void	DiamondTrap::whoAmI() {
-	std::cout << "DiamondTrap name: " << _name << " ClapTrap name: " << getName() << std::endl;
+	std::cout << "DiamondTrap name: " << _name << " // ClapTrap name: " << getName() << std::endl;
 }
 void	DiamondTrap::printStatus() {
 	std::cout << "**Status " << _name << " hp:" << getHitPoint() << " ep:" << getEnergyPoint() << " ad:" << getAttackDamage() << std::endl;

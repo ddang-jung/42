@@ -95,7 +95,7 @@ void	ClapTrap::takeDamage(unsigned int amount) {
 			setHitPoint(getHitPoint() - amount);
 		}
 		else {
-			std::cout << "0.. his dead.." << std::endl;
+			std::cout << "0.. he's dead.." << std::endl;
 			setHitPoint(0);
 		}
 	} else {
@@ -105,9 +105,9 @@ void	ClapTrap::takeDamage(unsigned int amount) {
 void	ClapTrap::beRepaired(unsigned int amount) {
 	if (getEnergyPoint() == 0 || getHitPoint() == 0) {
 		if (getEnergyPoint() == 0)
-			std::cout << "ClapTrap " << getName() << "failed to repair (has no energy..)" << std::endl;
+			std::cout << "ClapTrap " << getName() << " failed to repair (has no energy..)" << std::endl;
 		if (getHitPoint() == 0)
-			std::cout << "ClapTrap " << getName() << "failed to repair (has no hit point..)" << std::endl;
+			std::cout << "ClapTrap " << getName() << " failed to repair (has no hit point..)" << std::endl;
 	} else {
 		std::cout << "ClapTrap " << getName() << " repaired " << amount << std::endl;
 		setHitPoint(getHitPoint() + amount);

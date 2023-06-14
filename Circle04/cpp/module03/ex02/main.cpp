@@ -14,7 +14,7 @@ int	main(void) {
 	foo.printStatus();
 	std::cout << std::endl;
 
-	tom.attack("john");
+	tom.attack("John");
 	john.takeDamage(tom.getAttackDamage());
 	john.attack("Foo");
 	foo.takeDamage(john.getAttackDamage());
