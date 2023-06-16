@@ -15,15 +15,8 @@ class DiamondTrap : public FragTrap, public ScavTrap
 		DiamondTrap	&operator=(const DiamondTrap &ref);
 		~DiamondTrap();
 
-		// INIT
-		void	initHitPoint(void);
-		void	initEnergyPoint(void);
-		void	initAttackDamage(void);
-
 		// ACT
-		void	attack(const std::string& target);
-		void	takeDamage(unsigned int amount);
-		void	beRepaired(unsigned int amount);
+		void	attack(const std::string &target);
 		void	whoAmI();
 		void	printStatus();
 };

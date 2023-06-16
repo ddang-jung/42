@@ -19,21 +19,6 @@ class ClapTrap
 		ClapTrap	&operator=(const ClapTrap &ref);
 		~ClapTrap();
 
-		// GET / SET
-		const std::string	&getName() const;
-		const unsigned int	&getHitPoint() const;
-		const unsigned int	&getEnergyPoint() const;
-		const unsigned int	&getAttackDamage() const;
-		void				setName(const std::string &name);
-		void				setHitPoint(unsigned int hp);
-		void				setEnergyPoint(unsigned int ep);
-		void				setAttackDamage(unsigned int ad);
-
-		// INIT
-		void	initHitPoint();
-		void	initEnergyPoint();
-		void	initAttackDamage();
-
 		// ACT
 		void	attack(const std::string& target);
 		void	takeDamage(unsigned int amount);

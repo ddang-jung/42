@@ -16,11 +16,11 @@ int	main(void) {
 	std::cout << std::endl;
 
 	amy.attack("Tom");
-	tom.takeDamage(amy.getAttackDamage());
-	tom.attack("John");
-	john.takeDamage(tom.getAttackDamage());
-	john.attack("Foo");
-	foo.takeDamage(john.getAttackDamage());
+	tom.takeDamage(FRAG_AD);
+	amy.attack("John");
+	john.takeDamage(FRAG_AD);
+	amy.attack("Foo");
+	foo.takeDamage(FRAG_AD);
 	std::cout << std::endl;
 
 	amy.printStatus();
@@ -47,11 +47,6 @@ int	main(void) {
 	tom.highFivesGuys();
 	john.guardGate();
 	std::cout << std::endl;
-	// UNAVILABLE
-	// tom.whoAmI();
-	// john.whoAmI();
-	// tom.guardGate();
-	// john.highFivesGuys();
 
 	return (0);
 }

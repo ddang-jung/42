@@ -4,32 +4,34 @@
 // OCF
 DiamondTrap::DiamondTrap()
 		: FragTrap(), ScavTrap() {
-	_name = "Diamond";
-	initHitPoint();
-	initEnergyPoint();
-	initAttackDamage();
 	std::cout << DIA_CON << std::endl;
+	_class = "DiamondTrap";
+	_name = "Dia";
+	_hp = FRAG_HP;
+	_ep = SCAV_EP;
+	_ad = FRAG_AD;
 }
 DiamondTrap::DiamondTrap(const std::string &name)
-		: ClapTrap(name + "_clap_name"), FragTrap(name + "_frag_name"), ScavTrap(name + "_scav_name") {
-	_name = name;
-	initHitPoint();
-	initEnergyPoint();
-	initAttackDamage();
+		: FragTrap(name + "_clap_name"), ScavTrap(name + "_clap_name") {
 	std::cout << DIA_STR_CON << std::endl;
+	_class = "DiamondTrap";
+	_name = name;
+	_hp = FRAG_HP;
+	_ep = SCAV_EP;
+	_ad = FRAG_AD;
 }
 DiamondTrap::DiamondTrap(const DiamondTrap &ref)
-		: ClapTrap(ref), FragTrap(ref), ScavTrap(ref) {
-	*this = ref;
+		: FragTrap(ref), ScavTrap(ref) {
 	std::cout << DIA_COPY_CON << std::endl;
+	*this = ref;
 }
 DiamondTrap	&DiamondTrap::operator=(const DiamondTrap &ref) {
 	if (this != &ref) {
-		_name = ref._name;
-		setHitPoint(ref.getHitPoint());
-		setEnergyPoint(ref.getEnergyPoint());
-		setAttackDamage(ref.getAttackDamage());
 		std::cout << DIA_COPY_ASN << std::endl;
+		this->_name = ref._name;
+		this->_hp = ref._hp;
+		this->_ep = ref._ep;
+		this->_ad = ref._ad;
 	}
 	return (*this);
 }
@@ -37,51 +39,13 @@ DiamondTrap::~DiamondTrap() {
 	std::cout << DIA_DES << std::endl;
 }
 
-// INIT
-void	DiamondTrap::initHitPoint(void) {
-	FragTrap::initHitPoint();
-}
-void	DiamondTrap::initEnergyPoint(void) {
-	ScavTrap::initEnergyPoint();
-}
-void	DiamondTrap::initAttackDamage(void) {
-	FragTrap::initAttackDamage();
-}
-
 // ACT
 void	DiamondTrap::attack(const std::string &target) {
 	ScavTrap::attack(target);
 }
-void	DiamondTrap::takeDamage(unsigned int amount) {
-	if (getHitPoint() > 0) {
-		std::cout << "DiamondTrap " << _name << " took " << amount << " points of damage! now hit point is ";
-		if (getHitPoint() > amount) {
-			std::cout << (getHitPoint() - amount) << "." << std::endl;
-			setHitPoint(getHitPoint() - amount);
-		}
-		else {
-			std::cout << "0.. he's dead.." << std::endl;
-			setHitPoint(0);
-		}
-	} else {
-		std::cout << "DiamondTrap " << _name << " is already dead.. please stop.." << std::endl;
-	}
-}
-void	DiamondTrap::beRepaired(unsigned int amount) {
-	if (getEnergyPoint() == 0 || getHitPoint() == 0) {
-		if (getEnergyPoint() == 0)
-			std::cout << "DiamondTrap " << _name << "failed to repair (has no energy..)" << std::endl;
-		if (getHitPoint() == 0)
-			std::cout << "DiamondTrap " << _name << "failed to repair (has no hit point..)" << std::endl;
-	} else {
-		std::cout << "DiamondTrap " << _name << " repaired " << amount << std::endl;
-		setHitPoint(getHitPoint() + amount);
-		setEnergyPoint(getEnergyPoint() - 1);
-	}
-}
 void	DiamondTrap::whoAmI() {
-	std::cout << "DiamondTrap name: " << _name << " // ClapTrap name: " << getName() << std::endl;
+	std::cout << _class << " Who am I(" << _name << ") ClapTrap name(" << ClapTrap::_name << ")" << std::endl;
 }
 void	DiamondTrap::printStatus() {
-	std::cout << "**Status " << _name << " hp:" << getHitPoint() << " ep:" << getEnergyPoint() << " ad:" << getAttackDamage() << std::endl;
+	std::cout << "**Status " << _name << " hp:" << _hp << " ep:" << _ep << " ad:" << _ad << std::endl;
 }

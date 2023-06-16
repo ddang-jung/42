@@ -13,15 +13,7 @@ class FragTrap : virtual public ClapTrap
 		FragTrap	&operator=(const FragTrap &ref);
 		~FragTrap();
 
-		// INIT
-		void	initHitPoint(void);
-		void	initEnergyPoint(void);
-		void	initAttackDamage(void);
-
 		// ACT
-		void	attack(const std::string& target);
-		void	takeDamage(unsigned int amount);
-		void	beRepaired(unsigned int amount);
 		void	highFivesGuys(void);
 };
 

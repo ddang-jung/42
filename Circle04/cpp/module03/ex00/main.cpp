@@ -11,32 +11,32 @@ int	main(void) {
 	foo.printStatus();
 	std::cout << std::endl;
 
-	john.attack("Foo");
-	foo.takeDamage(john.getAttackDamage());
+	john.attack("somebody");
+	foo.attack("somebody");
 	std::cout << std::endl;
 
 	john.printStatus();
 	foo.printStatus();
 	std::cout << std::endl;
 
-	john.setAttackDamage(2);
-	john.attack("Foo");
-	foo.takeDamage(john.getAttackDamage());
+	john.takeDamage(2);
+	foo.takeDamage(2);
 	std::cout << std::endl;
 
 	john.printStatus();
 	foo.printStatus();
 	std::cout << std::endl;
 
+	john.beRepaired(1);
 	foo.beRepaired(1);
+	std::cout << std::endl;
+
+	john.printStatus();
 	foo.printStatus();
 	std::cout << std::endl;
 
-	for (int i = 0; i < 10; i++) {
-		john.attack("Foo");
-		foo.takeDamage(john.getAttackDamage());
-		std::cout << std::endl;
-	}
+	for (int i = 0; i < 8; i++)
+		foo.takeDamage(2);
 	foo.beRepaired(100);
 	foo.printStatus();
 	std::cout << std::endl;

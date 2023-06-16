@@ -5,7 +5,8 @@
 
 class ClapTrap
 {
-	private:
+	protected:
+		std::string		_class;
 		std::string		_name;
 		unsigned int	_hp;
 		unsigned int	_ep;
@@ -18,21 +19,6 @@ class ClapTrap
 		ClapTrap(const ClapTrap &ref);
 		ClapTrap	&operator=(const ClapTrap &ref);
 		~ClapTrap();
-
-		// GET / SET
-		const std::string	&getName() const;
-		const unsigned int	&getHitPoint() const;
-		const unsigned int	&getEnergyPoint() const;
-		const unsigned int	&getAttackDamage() const;
-		void				setName(const std::string &name);
-		void				setHitPoint(unsigned int hp);
-		void				setEnergyPoint(unsigned int ep);
-		void				setAttackDamage(unsigned int ad);
-
-		// INIT
-		void	initHitPoint();
-		void	initEnergyPoint();
-		void	initAttackDamage();
 
 		// ACT
 		void	attack(const std::string& target);

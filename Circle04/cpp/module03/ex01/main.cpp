@@ -12,7 +12,7 @@ int	main(void) {
 	std::cout << std::endl;
 
 	john.attack("Foo");
-	foo.takeDamage(john.getAttackDamage());
+	foo.takeDamage(SCAV_AD);
 	std::cout << std::endl;
 
 	john.printStatus();
@@ -29,9 +29,6 @@ int	main(void) {
 
 	john.guardGate();
 	std::cout << std::endl;
-	// UNAVILABLE
-	// ClapTrap	clap;
 
-	// clap.guardGate();
 	return (0);
 }
