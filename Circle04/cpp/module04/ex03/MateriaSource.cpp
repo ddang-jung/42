@@ -43,11 +43,13 @@ void		MateriaSource::learnMateria(AMateria* m) {
 			return ;
 		}
 	}
+	// std::cout << "MateriaSource: no space in templates" << std::endl;
 }
 AMateria*	MateriaSource::createMateria(std::string const & type) {
 	for (int i = 0; i < SIZE; i++) {
 		if (_templates[i] && _templates[i]->getType() == type)
 			return (_templates[i]->clone());
 	}
+	// std::cout << "MateriaSource: there is no " << type << " in templates" << std::endl;
 	return (NULL);
 }

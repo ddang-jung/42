@@ -55,13 +55,13 @@ void				Character::equip(AMateria* m) {
 			return ;
 		}
 	}
-	//Floar::dropAMateriaToFloar(m);
+	delete m;
 }
 void				Character::unequip(int idx) {
 	if (idx < 0 || idx >= SIZE)
 		return ;
 	if (_inventory[idx]) {
-		//Floar::dropAMateriaToFloar(_inventory[idx]);
+		delete _inventory[idx];
 		_inventory[idx] = NULL;
 	}
 }
