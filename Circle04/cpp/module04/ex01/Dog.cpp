@@ -15,7 +15,9 @@ Dog	&Dog::operator=(const Dog &ref) {
 	std::cout << DOG << ASN << std::endl;
 	if (this != &ref) {
 		this->_type = ref._type;
-		*this->_brain = *ref._brain;
+		if (this->_brain)
+			delete this->_brain;
+		this->_brain = new Brain(ref._brain->getIdea());
 	}
 	return (*this);
 }

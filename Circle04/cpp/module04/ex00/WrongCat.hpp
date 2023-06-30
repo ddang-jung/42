@@ -13,7 +13,7 @@ class WrongCat : public WrongAnimal
 		~WrongCat();
 
 		// MBF
-		virtual void	makeSound() const;
+		void	makeSound() const;
 };
 
 #endif

@@ -5,9 +5,9 @@
 
 int main()
 {
-	const Animal* meta = new Animal();
-	const Animal* j = new Dog();
-	const Animal* i = new Cat();
+	const Animal*	meta = new Animal();
+	const Animal*	j = new Dog();
+	const Animal*	i = new Cat();
 	std::cout << std::endl;
 
 	std::cout << j->getType() << " " << std::endl;
@@ -26,8 +26,8 @@ int main()
 	std::cout << "========================================" << std::endl;
 	std::cout << std::endl;
 
-	const WrongAnimal* w_animal = new WrongAnimal();
-	const WrongCat* w_cat = new WrongCat();
+	const WrongAnimal*	w_animal = new WrongAnimal();
+	const WrongCat*		w_cat = new WrongCat();
 	std::cout << std::endl;
 
 	std::cout << w_animal->getType() << " " << std::endl;

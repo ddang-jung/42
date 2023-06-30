@@ -7,21 +7,26 @@ int main()
 	std::cout << "************* DOG TEST *************" << std::endl;
 	Dog	*dog1 = new Dog();
 	Dog	*dog2 = new Dog("Bone...");
+	Dog	*dog3(dog2);
 	std::cout << std::endl;
 
 	std::cout << dog1->getBrain().getIdea() << std::endl;
 	std::cout << dog2->getBrain().getIdea() << std::endl;
+	std::cout << dog3->getBrain().getIdea() << std::endl;
 	std::cout << std::endl;
 
 	*dog1 = *dog2;
+	*dog3 = *dog2; // self assignment check
 	std::cout << std::endl;
 
 	std::cout << dog1->getBrain().getIdea() << std::endl;
 	std::cout << dog2->getBrain().getIdea() << std::endl;
+	std::cout << dog3->getBrain().getIdea() << std::endl;
 	std::cout << std::endl;
 
 	delete dog1;
 	delete dog2;
+	// delete dog3; // is double free
 	std::cout << std::endl;
 
 	std::cout << "************* CAT TEST *************" << std::endl;
@@ -66,6 +71,10 @@ int main()
 		delete animals[i];
 	std::cout << std::endl;
 
-	// system("leaks brain");
+	Dog	basic;
+	{
+		Dog	tmp = basic;
+	}
+	system("leaks ex01_");
 	return 0;
 }
