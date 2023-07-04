@@ -8,10 +8,10 @@ class Animal
 {
 	protected:
 		std::string	_type;
-		Animal();
 
 	public:
 		// OCF
+		Animal();
 		Animal(const Animal &ref);
 		Animal	&operator=(const Animal &ref);
 		virtual	~Animal();

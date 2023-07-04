@@ -23,7 +23,7 @@ const std::string	&Animal::getType() const {
 	return (this->_type);
 }
 
-// PURE VIRTUAL FUNCTION == CANNOT IMPLEMENT IN BASE CLASS
+// PURE VIRTUAL FUNCTION CANNOT IMPLEMENT
 // void	Animal::makeSound() const {
 // 	std::cout << this->_type << ": Hmm.. Sound?" << std::endl;
 // }

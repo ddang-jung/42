@@ -9,7 +9,7 @@ Cat::Cat() : Animal() {
 }
 Cat::Cat(const Cat &ref) : Animal(ref) {
 	std::cout << CAT << COPY_CON << std::endl;
-	*this = ref;
+	this->_brain = new Brain(*ref._brain);
 }
 Cat	&Cat::operator=(const Cat &ref) {
 	std::cout << CAT << ASN << std::endl;

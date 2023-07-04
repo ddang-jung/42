@@ -10,7 +10,7 @@ Brain::Brain(const Brain &ref) {
 	std::cout << BRAIN << COPY_CON << std::endl;
 	*this = ref;
 }
-Brain	&Brain::operator=(const Brain &ref){
+Brain	&Brain::operator=(const Brain &ref) {
 	std::cout << BRAIN << ASN << std::endl;
 	if (this != &ref)
 		setIdeas(ref.getIdea());
