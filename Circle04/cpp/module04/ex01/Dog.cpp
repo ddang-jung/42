@@ -9,15 +9,13 @@ Dog::Dog() : Animal() {
 }
 Dog::Dog(const Dog &ref) : Animal(ref) {
 	std::cout << DOG << COPY_CON << std::endl;
-	*this = ref;
+	this->_brain = new Brain(*ref._brain);
 }
 Dog	&Dog::operator=(const Dog &ref) {
 	std::cout << DOG << ASN << std::endl;
 	if (this != &ref) {
 		this->_type = ref._type;
-		if (this->_brain)
-			delete this->_brain;
-		this->_brain = new Brain(ref._brain->getIdea());
+		*this->_brain = *ref._brain;
 	}
 	return (*this);
 }

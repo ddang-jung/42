@@ -14,7 +14,7 @@ class Brain
 		Brain();
 		Brain(const Brain &ref);
 		Brain	&operator=(const Brain &ref);
-		virtual	~Brain();
+		~Brain();
 
 		// STR_CON
 		Brain(const std::string &idea);
