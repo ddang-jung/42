@@ -7,9 +7,9 @@ int	main(void) {
 		{
 			Bureaucrat	john("John", 150);
 
-			std::cout << john;
+			std::cout << john << std::endl;
 			john.decreaseGrade();
-			std::cout << john;
+			std::cout << john << std::endl;
 		}
 		catch (const std::exception &e)
 		{
@@ -23,7 +23,7 @@ int	main(void) {
 			Bureaucrat	amy("Amy", 10);
 
 			while (true) {
-				std::cout << amy;
+				std::cout << amy << std::endl;
 				amy.increaseGrade();
 			}
 		}
@@ -38,7 +38,7 @@ int	main(void) {
 		{
 			Bureaucrat	wrong("Wrong", 200);
 
-			std::cout << wrong;
+			std::cout << wrong << std::endl;
 		}
 		catch (const std::exception &e)
 		{

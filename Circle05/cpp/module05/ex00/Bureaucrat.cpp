@@ -35,10 +35,10 @@ Bureaucrat::~Bureaucrat(void) {
 
 // GET
 const std::string	&Bureaucrat::getName() const {
-	return (_name);
+	return (this->_name);
 }
 int					Bureaucrat::getGrade() const {
-	return (_grade);
+	return (this->_grade);
 }
 
 // MBF
@@ -60,6 +60,6 @@ const char	*Bureaucrat::GradeTooLowException::what() const throw() {
 }
 
 std::ostream	&operator<<(std::ostream &os, const Bureaucrat &ref) {
-	os << ref.getName() << ", bureacrat grade " << ref.getGrade() << "." << std::endl;
+	os << ref.getName() << ", bureacrat grade " << ref.getGrade() << ".";
 	return (os);
 }
