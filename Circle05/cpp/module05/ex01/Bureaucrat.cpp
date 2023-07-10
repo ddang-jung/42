@@ -13,10 +13,6 @@ Bureaucrat::Bureaucrat(void) : _name("Default"), _grade(150) {
 	std::cout << BUREAUCRAT << CON << std::endl;
 	checkGrade(_grade);
 }
-Bureaucrat::Bureaucrat(const std::string &name, int grade) : _name(name), _grade(grade) {
-	std::cout << BUREAUCRAT << MY_CON << std::endl;
-	checkGrade(_grade);
-}
 Bureaucrat::Bureaucrat(const Bureaucrat &ref) : _name(ref._name), _grade(ref._grade) {
 	std::cout << BUREAUCRAT << COPY_CON << std::endl;
 	checkGrade(_grade);
@@ -33,12 +29,18 @@ Bureaucrat::~Bureaucrat(void) {
 	std::cout << BUREAUCRAT << DES << std::endl;
 }
 
+// MY CONSTRUCTOR
+Bureaucrat::Bureaucrat(const std::string &name, int grade) : _name(name), _grade(grade) {
+	std::cout << BUREAUCRAT << MY_CON << std::endl;
+	checkGrade(_grade);
+}
+
 // GET
 const std::string	&Bureaucrat::getName() const {
-	return (_name);
+	return (this->_name);
 }
 int					Bureaucrat::getGrade() const {
-	return (_grade);
+	return (this->_grade);
 }
 
 // MBF
@@ -50,6 +52,17 @@ void	Bureaucrat::decreaseGrade() {
 	checkGrade(this->_grade + 1);
 	this->_grade += 1;
 }
+void	Bureaucrat::signForm(Form &ref) const {
+	try
+	{
+		ref.beSigned(*this);
+		std::cout << this->getName() << " signed " << ref.getName() << std::endl;
+	}
+	catch(std::exception &e)
+	{
+		std::cout << this->getName() << " couldn't sign " << ref.getName() << " because " << e.what() << std::endl;
+	}
+}
 
 // EXC
 const char	*Bureaucrat::GradeTooHighException::what() const throw() {
@@ -60,6 +73,6 @@ const char	*Bureaucrat::GradeTooLowException::what() const throw() {
 }
 
 std::ostream	&operator<<(std::ostream &os, const Bureaucrat &ref) {
-	os << ref.getName() << ", bureacrat grade " << ref.getGrade() << "." << std::endl;
+	os << ref.getName() << ", bureacrat grade " << ref.getGrade() << ".";
 	return (os);
 }

@@ -1,8 +1,11 @@
 #pragma once
 
 # include "Message.hpp"
+# include "Form.hpp"
 # include <string>
 # include <exception>
+
+class Form;
 
 class Bureaucrat
 {
@@ -14,10 +17,12 @@ class Bureaucrat
 	public:
 		// OCF
 		Bureaucrat(void);
-		Bureaucrat(const std::string &name, int grade); // my constructor
 		Bureaucrat(const Bureaucrat& ref);
 		Bureaucrat	&operator=(Bureaucrat const& ref);
 		virtual	~Bureaucrat(void);
+
+		// MY CONSTRUCTOR
+		Bureaucrat(const std::string &name, int grade);
 
 		// GET
 		const std::string	&getName() const;
@@ -26,6 +31,7 @@ class Bureaucrat
 		// MBF
 		void	increaseGrade();
 		void	decreaseGrade();
+		void	signForm(Form &ref) const;
 
 		// EXC
 		class	GradeTooHighException : public std::exception {
