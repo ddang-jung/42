@@ -34,7 +34,7 @@ Bureaucrat::~Bureaucrat(void) {
 }
 
 // GET
-const std::string	Bureaucrat::getName() const {
+const std::string	&Bureaucrat::getName() const {
 	return (_name);
 }
 int					Bureaucrat::getGrade() const {

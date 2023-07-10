@@ -20,8 +20,8 @@ class Bureaucrat
 		virtual	~Bureaucrat(void);
 
 		// GET
-		const std::string	getName() const ;
-		int					getGrade() const ;
+		const std::string	&getName() const;
+		int					getGrade() const;
 
 		// MBF
 		void	increaseGrade();
