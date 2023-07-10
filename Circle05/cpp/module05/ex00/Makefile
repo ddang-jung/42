@@ -8,13 +8,17 @@ RM = rm -f
 
 SRCS = main.cpp Bureaucrat.cpp
 
-OBJS = ${SRCS:.cpp=.o}
+OBJ_DIR = obj
+
+OBJS = ${addprefix $(OBJ_DIR)/, ${SRCS:.cpp=.o}}
+
 
 RED = \033[31m
 GREEN = \033[32m
 BOLD = \033[1m
 
-%.o : %.cpp
+$(OBJ_DIR)/%.o : %.cpp
+	@mkdir -p $(OBJ_DIR)
 	@$(CXX) $(CXXFLAGS) -c $< -o $@
 
 $(NAME) : $(OBJS)
@@ -25,6 +29,7 @@ all : $(NAME)
 
 clean :
 	@$(RM) $(OBJS)
+	@$(RM) -r $(OBJ_DIR)
 	@echo "$(RED)deleted object files"
 
 fclean :
