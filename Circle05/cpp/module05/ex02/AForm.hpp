@@ -1,7 +1,9 @@
 #pragma once
 
 # include "Bureaucrat.hpp"
+
 # include <string>
+# include <stdexcept>
 
 class Bureaucrat;
 
@@ -31,7 +33,7 @@ class AForm
 		int					getGradeToExecute() const;
 
 		// MBF
-		void	beSigned(const Bureaucrat &ref);
+		void			beSigned(const Bureaucrat &ref);
 		virtual void	execute(Bureaucrat const & executor) const = 0;
 
 		// EXC
@@ -40,6 +42,10 @@ class AForm
 				const char	*what() const throw();
 		};
 		class	GradeTooLowException : public std::exception {
+			public:
+				const char	*what() const throw();
+		};
+		class	IsNotSignedException : public std::exception {
 			public:
 				const char	*what() const throw();
 		};

@@ -1,11 +1,12 @@
 #pragma once
 
 # include "Message.hpp"
-# include "Form.hpp"
-# include <string>
-# include <exception>
+# include "AForm.hpp"
 
-class Form;
+# include <string>
+# include <stdexcept>
+
+class AForm;
 
 class Bureaucrat
 {
@@ -31,7 +32,8 @@ class Bureaucrat
 		// MBF
 		void	increaseGrade();
 		void	decreaseGrade();
-		void	signForm(Form &ref) const;
+		void	signForm(AForm &ref) const;
+		void	executeForm(AForm const & form);
 
 		// EXC
 		class	GradeTooHighException : public std::exception {

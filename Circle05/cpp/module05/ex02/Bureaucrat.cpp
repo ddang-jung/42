@@ -10,15 +10,15 @@ void	Bureaucrat::checkGrade(int grade) {
 
 // OCF
 Bureaucrat::Bureaucrat(void) : _name("Default"), _grade(150) {
-	std::cout << BUREAUCRAT << CON << std::endl;
+	// std::cout << BUREAUCRAT << CON << std::endl;
 	checkGrade(_grade);
 }
 Bureaucrat::Bureaucrat(const Bureaucrat &ref) : _name(ref._name), _grade(ref._grade) {
-	std::cout << BUREAUCRAT << COPY_CON << std::endl;
+	// std::cout << BUREAUCRAT << COPY_CON << std::endl;
 	checkGrade(_grade);
 }
 Bureaucrat& Bureaucrat::operator=(Bureaucrat const &ref) {
-	std::cout << BUREAUCRAT << ASN << std::endl;
+	// std::cout << BUREAUCRAT << ASN << std::endl;
 	if (this != &ref) {
 		this->_grade = ref._grade;
 	}
@@ -26,12 +26,12 @@ Bureaucrat& Bureaucrat::operator=(Bureaucrat const &ref) {
 	return (*this);
 }
 Bureaucrat::~Bureaucrat(void) {
-	std::cout << BUREAUCRAT << DES << std::endl;
+	// std::cout << BUREAUCRAT << DES << std::endl;
 }
 
 // MY CONSTRUCTOR
 Bureaucrat::Bureaucrat(const std::string &name, int grade) : _name(name), _grade(grade) {
-	std::cout << BUREAUCRAT << MY_CON << std::endl;
+	// std::cout << BUREAUCRAT << MY_CON << std::endl;
 	checkGrade(_grade);
 }
 
@@ -52,7 +52,7 @@ void	Bureaucrat::decreaseGrade() {
 	checkGrade(this->_grade + 1);
 	this->_grade += 1;
 }
-void	Bureaucrat::signForm(Form &ref) const {
+void	Bureaucrat::signForm(AForm &ref) const {
 	try
 	{
 		ref.beSigned(*this);
@@ -60,8 +60,20 @@ void	Bureaucrat::signForm(Form &ref) const {
 	}
 	catch(std::exception &e)
 	{
-		std::cout << this->getName() << " couldn't sign " << ref.getName() << " because " << e.what() << std::endl;
+		std::cerr << this->getName() << " couldn't sign " << ref.getName() << " because " << e.what() << std::endl;
 	}
+}
+void	Bureaucrat::executeForm(AForm const & form) {
+	try
+	{
+		form.execute(*this);
+		std::cout << this->getName() << " executed " << form.getName() << std::endl;
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << this->getName() << " couldn't execute " << form.getName() << " because " << e.what() << std::endl;
+	}
+	
 }
 
 // EXC

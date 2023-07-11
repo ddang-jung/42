@@ -10,17 +10,17 @@ void	AForm::checkGrade(int grade) {
 
 // OCF
 AForm::AForm(void) : _name("Default"), _is_signed(false), _grade_to_sign(150), _grade_to_execute(150) {
-	std::cout << FORM << CON << std::endl;
+	// std::cout << FORM << CON << std::endl;
 	checkGrade(_grade_to_sign);
 	checkGrade(_grade_to_execute);
 }
 AForm::AForm(const AForm &ref) : _name(ref._name), _is_signed(ref._is_signed), _grade_to_sign(ref._grade_to_sign), _grade_to_execute(ref._grade_to_execute) {
-	std::cout << FORM << COPY_CON << std::endl;
+	// std::cout << FORM << COPY_CON << std::endl;
 	checkGrade(_grade_to_sign);
 	checkGrade(_grade_to_execute);
 }
 AForm& AForm::operator=(AForm const &ref) {
-	std::cout << FORM << ASN << std::endl;
+	// std::cout << FORM << ASN << std::endl;
 	if (this != &ref) {
 		this->_is_signed = ref._is_signed;
 		this->_grade_to_sign = ref._grade_to_sign;
@@ -31,12 +31,12 @@ AForm& AForm::operator=(AForm const &ref) {
 	return (*this);
 }
 AForm::~AForm(void) {
-	std::cout << FORM << DES << std::endl;
+	// std::cout << FORM << DES << std::endl;
 }
 
 // MY CONSTRUCTOR
 AForm::AForm(const std::string &name, int grade_to_sign, int grade_to_execute) : _name(name), _is_signed(false), _grade_to_sign(grade_to_sign), _grade_to_execute(grade_to_execute) {
-	std::cout << FORM << MY_CON << std::endl;
+	// std::cout << FORM << MY_CON << std::endl;
 	checkGrade(_grade_to_sign);
 	checkGrade(_grade_to_execute);
 }
@@ -69,6 +69,9 @@ const char	*AForm::GradeTooHighException::what() const throw() {
 }
 const char	*AForm::GradeTooLowException::what() const throw() {
 	return ("grade is too low.");
+}
+const char	*AForm::IsNotSignedException::what() const throw() {
+	return ("not signed.");
 }
 
 std::ostream	&operator<<(std::ostream &os, const AForm &ref) {
