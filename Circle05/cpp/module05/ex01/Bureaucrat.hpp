@@ -3,7 +3,7 @@
 # include "Message.hpp"
 # include "Form.hpp"
 # include <string>
-# include <exception>
+# include <stdexcept>
 
 class Form;
 

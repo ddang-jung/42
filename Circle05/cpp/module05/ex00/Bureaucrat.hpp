@@ -2,7 +2,7 @@
 
 # include "Message.hpp"
 # include <string>
-# include <exception>
+# include <stdexcept>
 
 class Bureaucrat
 {
