@@ -5,8 +5,8 @@
 
 int	main(void) {
 	ShrubberyCreationForm	shrubbery("Home");
-	RobotomyRequestForm		robotomy("Frankenstein");
-	PresidentialPardonForm	president("CEO");
+	RobotomyRequestForm		robotomy("Franky");
+	PresidentialPardonForm	president("Joe Biden");
 	std::cout << std::endl;
 	
 	{
@@ -17,23 +17,23 @@ int	main(void) {
 		std::cout << std::endl;
 	}
 	{
-		std::cout << "====== INTERN TEST ======" << std::endl;
-		Bureaucrat	intern("Intern", 140);
-		std::cout << intern << std::endl;
+		std::cout << "====== GUEST TEST ======" << std::endl;
+		Bureaucrat	guest("Guest", 140);
+		std::cout << guest << std::endl;
 		std::cout << std::endl;
 		try {
-			intern.signForm(shrubbery);
-			intern.signForm(robotomy);
-			intern.signForm(president);
+			guest.signForm(shrubbery);
+			guest.signForm(robotomy);
+			guest.signForm(president);
 		}
 		catch (const std::exception &e) {
 			std::cerr << e.what() << std::endl;
 		}
 		std::cout << std::endl;
 		try {
-			intern.executeForm(shrubbery);
-			intern.executeForm(robotomy);
-			intern.executeForm(president);
+			guest.executeForm(shrubbery);
+			guest.executeForm(robotomy);
+			guest.executeForm(president);
 		}
 		catch (const std::exception &e) {
 			std::cerr << e.what() << std::endl;
