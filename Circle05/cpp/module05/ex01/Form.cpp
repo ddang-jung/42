@@ -23,8 +23,6 @@ Form& Form::operator=(Form const &ref) {
 	std::cout << FORM << ASN << std::endl;
 	if (this != &ref) {
 		this->_is_signed = ref._is_signed;
-		this->_grade_to_sign = ref._grade_to_sign;
-		this->_grade_to_execute = ref._grade_to_execute;
 	}
 	checkGrade(_grade_to_sign);
 	checkGrade(_grade_to_execute);
