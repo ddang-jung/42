@@ -10,15 +10,12 @@ void	Bureaucrat::checkGrade(int grade) {
 
 // OCF
 Bureaucrat::Bureaucrat(void) : _name("Default"), _grade(150) {
-	// std::cout << BUREAUCRAT << CON << std::endl;
 	checkGrade(_grade);
 }
 Bureaucrat::Bureaucrat(const Bureaucrat &ref) : _name(ref._name), _grade(ref._grade) {
-	// std::cout << BUREAUCRAT << COPY_CON << std::endl;
 	checkGrade(_grade);
 }
 Bureaucrat& Bureaucrat::operator=(Bureaucrat const &ref) {
-	// std::cout << BUREAUCRAT << ASN << std::endl;
 	if (this != &ref) {
 		this->_grade = ref._grade;
 	}
@@ -26,12 +23,10 @@ Bureaucrat& Bureaucrat::operator=(Bureaucrat const &ref) {
 	return (*this);
 }
 Bureaucrat::~Bureaucrat(void) {
-	// std::cout << BUREAUCRAT << DES << std::endl;
 }
 
 // MY CONSTRUCTOR
 Bureaucrat::Bureaucrat(const std::string &name, int grade) : _name(name), _grade(grade) {
-	// std::cout << BUREAUCRAT << MY_CON << std::endl;
 	checkGrade(_grade);
 }
 
