@@ -6,7 +6,6 @@
 #include <ctime>
 #include <iostream>
 
-
 Base	*generate(void) {
 	int	option;
 
