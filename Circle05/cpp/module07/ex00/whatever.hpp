@@ -1,8 +1,9 @@
 #pragma once
 
 template <typename T>
-void	swap(T &l, T &r) {
-	T	temp;
+void swap(T &l, T &r)
+{
+	T temp;
 
 	temp = l;
 	l = r;
@@ -10,11 +11,13 @@ void	swap(T &l, T &r) {
 }
 
 template <typename T>
-T		min(T l, T r) {
+T min(T l, T r)
+{
 	return ((l < r) ? l : r);
 }
 
 template <typename T>
-T		max(T l, T r) {
+T max(T l, T r)
+{
 	return ((l > r) ? l : r);
 }
