@@ -11,7 +11,7 @@ private:
 	std::stack<int> _data;
 
 private:
-	void _throwError();
+	void _throwError(void);
 	bool _isOperator(char c);
 	void _calculate(char oprt);
 

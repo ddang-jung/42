@@ -6,7 +6,6 @@ int main(int ac, char **av)
 	{
 		if (ac != 2)
 			throw(std::invalid_argument("Error"));
-
 		RPN rpn;
 
 		rpn.parse(av[1]);
