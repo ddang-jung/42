@@ -7,9 +7,10 @@ int main(int ac, char **av)
 		PmergeMe pm;
 
 		pm.parse(ac, av);
-		pm.print("Before:  ");
+		pm.printElements("Before:  ");
 		pm.sort();
-		pm.print("After:   ");
+		pm.printElements("After:   ");
+		pm.printTime();
 	}
 	catch (const std::exception &e)
 	{

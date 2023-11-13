@@ -1,12 +1,14 @@
 #include "PmergeMe.hpp"
 
 // OCF
-PmergeMe::PmergeMe(void) {}
+PmergeMe::PmergeMe(void) : vec_time(0.0), deq_time(0.0) {}
 PmergeMe::PmergeMe(const PmergeMe &src) { *this = src; }
 PmergeMe &PmergeMe::operator=(PmergeMe const &rhs)
 {
 	if (this != &rhs)
 	{
+		this->vec_time = rhs.vec_time;
+		this->deq_time = rhs.deq_time;
 	}
 	return *this;
 }
@@ -50,20 +52,40 @@ void PmergeMe::parse(int ac, char **av)
 	}
 }
 
-void PmergeMe::print(const std::string &msg)
+void PmergeMe::printElements(const std::string &msg)
 {
 	std::cout << msg;
 	for (size_t i = 0; i < _vec.size(); i++)
-		std::cout << _deq[i] << " ";
+		std::cout << _vec[i] << " ";
 	std::cout << std::endl;
+}
+
+std::time_t PmergeMe::_getCurrentTime(void)
+{
+	struct timeval curr;
+
+	gettimeofday(&curr, NULL);
+	return (curr.tv_sec * 1000000UL + curr.tv_usec);
 }
 
 void PmergeMe::sort(void)
 {
-	gettimeofday(&_vec_start, NULL);
+	std::time_t start, finish;
+
+	start = _getCurrentTime();
 	_mergeInsertSort(_vec, 0, _vec.size() - 1);
-	gettimeofday(&_vec_finish, NULL);
-	gettimeofday(&_deq_start, NULL);
+	finish = _getCurrentTime();
+	vec_time = static_cast<double>(finish - start);
+	start = _getCurrentTime();
 	_mergeInsertSort(_deq, 0, _deq.size() - 1);
-	gettimeofday(&_deq_finish, NULL);
+	finish = _getCurrentTime();
+	deq_time = static_cast<double>(finish - start);
+}
+
+void PmergeMe::printTime(void)
+{
+	std::cout << "Time to process a range of " << _vec.size();
+	std::cout << " elements with std::vector : " << vec_time << " us" << std::endl;
+	std::cout << "Time to process a range of " << _deq.size();
+	std::cout << " elements with std::deque : " << deq_time << " us" << std::endl;
 }

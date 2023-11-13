@@ -1,27 +1,34 @@
 #ifndef PmergeMe_HPP
 #define PmergeMe_HPP
 
-#include <iostream>
-#include <vector>
-#include <deque>
-#include <sys/time.h>
+# include <iostream>
+# include <vector>
+# include <deque>
+# include <sys/time.h>
 
 class PmergeMe
 {
 private:
 	std::vector<int> _vec;
 	std::deque<int> _deq;
-	struct timeval _vec_start, _vec_finish;
-	struct timeval _deq_start, _deq_finish;
 
 private:
 	void _throwError(void);
 	int _intConvert(const std::string &str);
+	std::time_t _getCurrentTime(void);
 
 	template <typename T>
 	void _mergeInsertSort(T &src, int start, int end);
 
+	template <typename T>
+	void _mergeSort(T &src, int start, int mid, int end);
+
+	template <typename T>
+	void _insertSort(T &src, int start, int end);
+
 public:
+	double vec_time, deq_time;
+
 	// OCF
 	PmergeMe(void);
 	PmergeMe(const PmergeMe &src);
@@ -30,8 +37,11 @@ public:
 
 	// MBF
 	void parse(int ac, char **av);
-	void print(const std::string &msg);
+	void printElements(const std::string &msg);
 	void sort(void);
+	void printTime(void);
 };
+
+# include "PmergeMe.tpp"
 
 #endif
