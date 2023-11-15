@@ -1,57 +1,84 @@
 #pragma once
 
 template <typename T>
-void PmergeMe::_mergeInsertSort(T &src, int start, int end)
+void PmergeMe::_mergeInsertSort(T &src) const
 {
-	if (start < end)
+	T mainChain;
+	T pendingElements;
+	bool	odd = false;
+	int struggler = 0;
+
+	if (src.size() == 1)
+		return;
+
+	/*
+		search two at a time
+		larger to MainChain
+		smaller to PendingElements
+		if odd, fill struggler
+	*/
+	for (size_t i = 0; i < src.size(); i += 2)
 	{
-		if (end - start < 70)
-			_insertSort(src, start, end);
+		if ((i + 1) != src.size())
+		{
+			int large, small;
+
+			large = src[i] > src[i + 1] ? src[i] : src[i + 1];
+			small = src[i] < src[i + 1] ? src[i] : src[i + 1];
+			mainChain.push_back(large);
+			pendingElements.push_back(small);
+		}
 		else
 		{
-			int mid = (start + end) / 2;
-			_mergeInsertSort(src, start, mid);
-			_mergeInsertSort(src, mid + 1, end);
-			_mergeSort(src, start, mid, end);
+			odd = true;
+			struggler = src[i];
 		}
 	}
-}
 
-template <typename T>
-void PmergeMe::_mergeSort(T &src, int start, int mid, int end)
-{
-	int i = start;
-	int j = mid + 1;
-	int k = 0;
-	std::vector<int> tmp(end - start + 1);
-
-	while (i <= mid && j <= end)
+	//	sort in ascending order
+	for (size_t i = 0; i < mainChain.size() - 1; i++)
 	{
-		if (src[i] < src[j])
-			tmp[k++] = src[i++];
-		else
-			tmp[k++] = src[j++];
-	}
-	while (i <= mid)
-		tmp[k++] = src[i++];
-	while (j <= end)
-		tmp[k++] = src[j++];
-	for (int i = start; i <= end; i++)
-		src[i] = tmp[i - start];
-}
-
-template <typename T>
-void PmergeMe::_insertSort(T &src, int start, int end)
-{
-	for (int i = start + 1; i <= end; i++)
-	{
-		int tmp = src[i];
-		int j = i - 1;
-		while (j >= start && src[j] > tmp)
+		for (size_t j = 0; j < mainChain.size() - i - 1; j++)
 		{
-			src[j + 1] = src[j];
-			j--;
+			if (mainChain[j] > mainChain[j + 1])
+			{
+				std::swap(mainChain[j], mainChain[j + 1]);
+				std::swap(pendingElements[j], pendingElements[j + 1]);
+			}
 		}
-		src[j + 1] = tmp;
 	}
+
+	/*
+		make Jacobsthal Vector
+		(1, 3, 5, 11, 21, 43, 85, 171, 341, 683, 1365..)
+	*/
+	std::vector<size_t> jacobsthal;
+
+	jacobsthal.push_back(1);
+	for (size_t i = 0;;i++)
+	{
+		size_t next = (2 * jacobsthal[i]) + (i % 2 ? -1 : 1);
+		jacobsthal.push_back(next);
+		if (next >= pendingElements.size())
+			break;
+	}
+
+	//	first element in pendingElements must be smaller than first element in mainChain
+	mainChain.insert(mainChain.begin(), pendingElements[0]);
+	
+	//	insertion sort using Jacobsthal Number
+	for (size_t i = 0; i < jacobsthal.size() - 1; i++)
+	{
+		size_t max = jacobsthal[i + 1] < pendingElements.size() ? jacobsthal[i + 1] : pendingElements.size();
+		size_t min = jacobsthal[i];
+		for (max -= 1; max >= min; max--)
+		{
+			int target = pendingElements[max];
+			mainChain.insert(std::lower_bound(mainChain.begin(), mainChain.end(), target), target);
+		}
+	}
+	if (odd)
+		mainChain.insert(std::lower_bound(mainChain.begin(), mainChain.end(), struggler), struggler);
+
+	src = mainChain;
 }

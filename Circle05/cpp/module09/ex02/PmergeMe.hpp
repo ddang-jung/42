@@ -1,10 +1,10 @@
 #ifndef PmergeMe_HPP
 #define PmergeMe_HPP
 
-# include <iostream>
-# include <vector>
-# include <deque>
-# include <sys/time.h>
+#include <iostream>
+#include <vector>
+#include <deque>
+#include <sys/time.h>
 
 class PmergeMe
 {
@@ -18,13 +18,7 @@ private:
 	std::time_t _getCurrentTime(void);
 
 	template <typename T>
-	void _mergeInsertSort(T &src, int start, int end);
-
-	template <typename T>
-	void _mergeSort(T &src, int start, int mid, int end);
-
-	template <typename T>
-	void _insertSort(T &src, int start, int end);
+	void _mergeInsertSort(T &src) const;
 
 public:
 	double vec_time, deq_time;
@@ -42,6 +36,6 @@ public:
 	void printTime(void);
 };
 
-# include "PmergeMe.tpp"
+#include "PmergeMe.tpp"
 
 #endif

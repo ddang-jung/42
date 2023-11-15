@@ -43,6 +43,8 @@ int PmergeMe::_intConvert(const std::string &str)
 
 void PmergeMe::parse(int ac, char **av)
 {
+	if (ac < 2)
+		_throwError();
 	for (int i = 1; i < ac; i++)
 	{
 		int num = _intConvert(av[i]);
@@ -73,11 +75,11 @@ void PmergeMe::sort(void)
 	std::time_t start, finish;
 
 	start = _getCurrentTime();
-	_mergeInsertSort(_vec, 0, _vec.size() - 1);
+	_mergeInsertSort(_vec);
 	finish = _getCurrentTime();
 	vec_time = static_cast<double>(finish - start);
 	start = _getCurrentTime();
-	_mergeInsertSort(_deq, 0, _deq.size() - 1);
+	_mergeInsertSort(_deq);
 	finish = _getCurrentTime();
 	deq_time = static_cast<double>(finish - start);
 }
