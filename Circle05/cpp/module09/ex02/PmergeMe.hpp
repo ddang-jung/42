@@ -18,7 +18,7 @@ private:
 	std::time_t _getCurrentTime(void);
 
 	template <typename T>
-	void _mergeInsertSort(T &src) const;
+	void _mergeInsertionSort(T &src) const;
 
 public:
 	double vec_time, deq_time;

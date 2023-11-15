@@ -7,6 +7,8 @@ PmergeMe &PmergeMe::operator=(PmergeMe const &rhs)
 {
 	if (this != &rhs)
 	{
+		this->_vec = rhs._vec;
+		this->_deq = rhs._deq;
 		this->vec_time = rhs.vec_time;
 		this->deq_time = rhs.deq_time;
 	}
@@ -58,7 +60,11 @@ void PmergeMe::printElements(const std::string &msg)
 {
 	std::cout << msg;
 	for (size_t i = 0; i < _vec.size(); i++)
+	{
+		if (_vec[i] != _deq[i])
+			_throwError();
 		std::cout << _vec[i] << " ";
+	}
 	std::cout << std::endl;
 }
 
@@ -75,11 +81,11 @@ void PmergeMe::sort(void)
 	std::time_t start, finish;
 
 	start = _getCurrentTime();
-	_mergeInsertSort(_vec);
+	_mergeInsertionSort(_vec);
 	finish = _getCurrentTime();
 	vec_time = static_cast<double>(finish - start);
 	start = _getCurrentTime();
-	_mergeInsertSort(_deq);
+	_mergeInsertionSort(_deq);
 	finish = _getCurrentTime();
 	deq_time = static_cast<double>(finish - start);
 }

@@ -1,11 +1,11 @@
 #pragma once
 
 template <typename T>
-void PmergeMe::_mergeInsertSort(T &src) const
+void PmergeMe::_mergeInsertionSort(T &src) const
 {
 	T mainChain;
 	T pendingElements;
-	bool	odd = false;
+	bool odd = false;
 	int struggler = 0;
 
 	if (src.size() == 1)
@@ -55,7 +55,7 @@ void PmergeMe::_mergeInsertSort(T &src) const
 	std::vector<size_t> jacobsthal;
 
 	jacobsthal.push_back(1);
-	for (size_t i = 0;;i++)
+	for (size_t i = 0;; i++)
 	{
 		size_t next = (2 * jacobsthal[i]) + (i % 2 ? -1 : 1);
 		jacobsthal.push_back(next);
@@ -65,7 +65,7 @@ void PmergeMe::_mergeInsertSort(T &src) const
 
 	//	first element in pendingElements must be smaller than first element in mainChain
 	mainChain.insert(mainChain.begin(), pendingElements[0]);
-	
+
 	//	insertion sort using Jacobsthal Number
 	for (size_t i = 0; i < jacobsthal.size() - 1; i++)
 	{
